@@ -32,6 +32,10 @@ app.use(express.json());
 app.use(userRouter);
 app.use(fileRouter);
 
+app.get("/", (req, res) => {
+  res.send("ok");
+});
+
 app.listen(port, () => {
   console.log(`Server is up and running on port ${port}`);
 });
