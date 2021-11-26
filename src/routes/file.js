@@ -150,8 +150,7 @@ router.get(
       return res.status(400).send();
     }
 
-    const range = req.headers.range;
-    if (!range) return res.status(400).send("range is required");
+    const range = req.headers.range || "0-";
 
     const video = await (await client)
       .db(process.env.DB_NAME)
@@ -183,7 +182,7 @@ router.get(
       req.params.filename,
       {
         start,
-        end,
+        end: end + 1,
       }
     );
     downloadStream.pipe(res);

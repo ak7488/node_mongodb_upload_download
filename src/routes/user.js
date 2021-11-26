@@ -143,7 +143,7 @@ router.post("/auth/get-tem-token", auth, async (req, res) => {
     const token = req.token;
     const id = req.user._id;
 
-    const temToken = createJWT(Math.random().toString(), 3600);
+    const temToken = createJWT(id.toString(), 3600);
     const userTokensSliced = req.user.temproryTokens.reverse().slice(0, 2);
 
     const e = await (
